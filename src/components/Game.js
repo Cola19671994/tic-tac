@@ -1,17 +1,19 @@
 import React from "react";
-import { store } from "../store/store";
+import { useSelector, useDispatch } from "react-redux";
 import Board from "./Board";
 
 function Game() {
-  const { board, currentPlayer, winner, status } = store.getState();
+  const { winner, status, currentPlayer } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   const handleRestart = () => {
-    store.dispatch({ type: "RESET_GAME" });
+    dispatch({ type: "RESET_GAME" });
   };
 
   return (
     <div className="game">
-      <Board board={board} />
+      <h1>Tic-Tac-Toe</h1>
+      <Board />
       <div className="status">
         {status === "win" && <p>Winner: {winner}</p>}
         {status === "draw" && <p>It's a draw!</p>}

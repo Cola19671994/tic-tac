@@ -1,21 +1,22 @@
 import React from "react";
-import Square from "./Square"; // Импорт компонента Square
-import store from "../store/store"; // Импорт хранилища
+import { useSelector, useDispatch } from "react-redux";
+import Square from "./Square";
 
 function Board() {
-  const state = store.getState(); // Получаем текущее состояние из хранилища
+  const board = useSelector((state) => state.board);
+  const dispatch = useDispatch();
 
   const handleSquareClick = (index) => {
-    store.dispatch({ type: "MAKE_MOVE", payload: { index } }); // Диспатчим действие
+    dispatch({ type: "MAKE_MOVE", payload: { index } });
   };
 
   return (
     <div className="board">
-      {state.board.map((value, index) => (
+      {board.map((value, index) => (
         <Square
           key={index}
-          value={value} // Значение текущего квадрата
-          onClick={() => handleSquareClick(index)} // Функция для клика
+          value={value}
+          onClick={() => handleSquareClick(index)}
         />
       ))}
     </div>
