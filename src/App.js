@@ -1,13 +1,16 @@
-import "./App.css";
 import React from "react";
 import Game from "./components/Game";
+import "tailwindcss/tailwind.css";
+import "./index.css";
 
-function App() {
-  return (
-    <div className="app">
-      <Game />
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <div className="flex justify-center items-center h-screen bg-gray-100">
+        <Game />
+      </div>
+    );
+  }
 }
 
 export default App;
